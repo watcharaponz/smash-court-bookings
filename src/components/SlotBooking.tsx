@@ -71,9 +71,9 @@ export function SlotBooking({ court, onBookSlots, onBack }: SlotBookingProps) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <Button variant="outline" onClick={onBack} className="mb-4">
-            ← Back to Courts
+            ← กลับไปที่สนาม
           </Button>
-          <h1 className="text-3xl font-bold text-foreground">Book {court.name}</h1>
+          <h1 className="text-3xl font-bold text-foreground">จอง {court.name}</h1>
           <div className="flex items-center text-muted-foreground mt-2">
             <MapPin className="h-4 w-4 mr-2" />
             <span>{court.location}</span>
@@ -92,8 +92,8 @@ export function SlotBooking({ court, onBookSlots, onBack }: SlotBookingProps) {
         {/* Date Selection */}
         <Card className="lg:col-span-1">
           <CardHeader>
-            <CardTitle>Select Date</CardTitle>
-            <CardDescription>Choose your preferred booking date</CardDescription>
+            <CardTitle>เลือกวันที่</CardTitle>
+            <CardDescription>เลือกวันที่ที่คุณต้องการจอง</CardDescription>
           </CardHeader>
           <CardContent>
             <Calendar
@@ -109,9 +109,9 @@ export function SlotBooking({ court, onBookSlots, onBack }: SlotBookingProps) {
         {/* Available Slots */}
         <Card className="lg:col-span-2">
           <CardHeader>
-            <CardTitle>Available Slots</CardTitle>
+            <CardTitle>ช่วงเวลาที่ว่าง</CardTitle>
             <CardDescription>
-              {selectedDate?.toLocaleDateString()} • Select multiple slots for your booking
+              {selectedDate?.toLocaleDateString('th-TH')} • เลือกหลายช่วงเวลาสำหรับการจองของคุณ
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -149,28 +149,28 @@ export function SlotBooking({ court, onBookSlots, onBack }: SlotBookingProps) {
             {selectedSlots.length > 0 && (
               <Card className="mt-6 bg-accent/50">
                 <CardContent className="p-6">
-                  <h3 className="font-semibold mb-4">Booking Summary</h3>
+                  <h3 className="font-semibold mb-4">สรุปการจอง</h3>
                   <div className="space-y-2 mb-4">
                     <div className="flex justify-between text-sm">
-                      <span>Court:</span>
+                      <span>สนาม:</span>
                       <span className="font-medium">{court.name}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>Date:</span>
-                      <span className="font-medium">{selectedDate?.toLocaleDateString()}</span>
+                      <span>วันที่:</span>
+                      <span className="font-medium">{selectedDate?.toLocaleDateString('th-TH')}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>Slots:</span>
-                      <span className="font-medium">{selectedSlots.length} slot(s)</span>
+                      <span>ช่วงเวลา:</span>
+                      <span className="font-medium">{selectedSlots.length} ช่วง</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span>Price per slot:</span>
-                      <span className="font-medium">${court.price_per_slot}</span>
+                      <span>ราคาต่อช่วง:</span>
+                      <span className="font-medium">฿{court.price_per_slot}</span>
                     </div>
                     <div className="border-t pt-2 mt-2">
                       <div className="flex justify-between font-semibold">
-                        <span>Total:</span>
-                        <span className="text-primary">${totalPrice}</span>
+                        <span>รวม:</span>
+                        <span className="text-primary">฿{totalPrice}</span>
                       </div>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ export function SlotBooking({ court, onBookSlots, onBack }: SlotBookingProps) {
                     className="w-full"
                   >
                     <DollarSign className="mr-2 h-4 w-4" />
-                    Confirm Booking (${totalPrice})
+                    ยืนยันการจอง (฿{totalPrice})
                   </Button>
                 </CardContent>
               </Card>

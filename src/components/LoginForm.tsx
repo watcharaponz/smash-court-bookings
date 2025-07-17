@@ -55,12 +55,12 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
       <Card className="w-full max-w-md animate-scale-in">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">
-            {isLogin ? "Welcome Back" : "Create Account"}
+            {isLogin ? "ยินดีต้อนรับกลับ" : "สร้างบัญชี"}
           </CardTitle>
           <CardDescription>
             {isLogin 
-              ? "Sign in to book your favorite courts" 
-              : "Join us to start booking amazing courts"
+              ? "เข้าสู่ระบบเพื่อจองสนามที่คุณชื่นชอบ" 
+              : "เข้าร่วมกับเราเพื่อเริ่มจองสนามที่ยอดเยี่ยม"
             }
           </CardDescription>
         </CardHeader>
@@ -69,13 +69,13 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
           <form onSubmit={handleSubmit} className="space-y-4">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">ชื่อเต็ม</Label>
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="name"
                     type="text"
-                    placeholder="Enter your full name"
+                    placeholder="กรอกชื่อเต็มของคุณ"
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
                     className="pl-10"
@@ -86,13 +86,13 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">อีเมล</Label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="กรอกอีเมลของคุณ"
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   className="pl-10"
@@ -103,13 +103,13 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
 
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="phone">Phone Number</Label>
+                <Label htmlFor="phone">หมายเลขโทรศัพท์</Label>
                 <div className="relative">
                   <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="phone"
                     type="tel"
-                    placeholder="Enter your phone number"
+                    placeholder="กรอกหมายเลขโทรศัพท์ของคุณ"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
                     className="pl-10"
@@ -120,13 +120,13 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">รหัสผ่าน</Label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  placeholder="Enter your password"
+                  placeholder="กรอกรหัสผ่านของคุณ"
                   value={formData.password}
                   onChange={(e) => handleInputChange("password", e.target.value)}
                   className="pl-10 pr-10"
@@ -144,13 +144,13 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
 
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label htmlFor="confirmPassword">ยืนยันรหัสผ่าน</Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
                     id="confirmPassword"
                     type="password"
-                    placeholder="Confirm your password"
+                    placeholder="ยืนยันรหัสผ่านของคุณ"
                     value={formData.confirmPassword}
                     onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
                     className="pl-10"
@@ -162,7 +162,7 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
 
             <div className="space-y-3 pt-4">
               <Button type="submit" variant="gradient" size="lg" className="w-full">
-                {isLogin ? "Sign In" : "Create Account"}
+                {isLogin ? "เข้าสู่ระบบ" : "สร้างบัญชี"}
               </Button>
               
               <div className="text-center space-y-2">
@@ -172,8 +172,8 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
                   className="text-sm text-primary hover:underline"
                 >
                   {isLogin 
-                    ? "Don't have an account? Sign up" 
-                    : "Already have an account? Sign in"
+                    ? "ยังไม่มีบัญชี? สมัครสมาชิก" 
+                    : "มีบัญชีแล้ว? เข้าสู่ระบบ"
                   }
                 </button>
                 
@@ -182,7 +182,7 @@ export function LoginForm({ onLogin, onRegister, onClose }: LoginFormProps) {
                   onClick={onClose}
                   className="block w-full text-sm text-muted-foreground hover:text-foreground"
                 >
-                  Cancel
+                  ยกเลิก
                 </button>
               </div>
             </div>

@@ -26,7 +26,7 @@ export function CourtCard({ court, onViewSlots }: CourtCardProps) {
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
         />
         <div className="absolute top-4 right-4 bg-success text-success-foreground px-3 py-1 rounded-full text-sm font-medium">
-          Available
+          ว่าง
         </div>
       </div>
 
@@ -50,11 +50,11 @@ export function CourtCard({ court, onViewSlots }: CourtCardProps) {
           <div className="flex items-center text-primary font-semibold">
             <DollarSign className="h-4 w-4 mr-1" />
             <span className="text-lg">{court.price_per_slot}</span>
-            <span className="text-sm text-muted-foreground ml-1">/ slot</span>
+            <span className="text-sm text-muted-foreground ml-1">/ ช่วง</span>
           </div>
           <div className="flex items-center text-muted-foreground text-sm">
             <Clock className="h-4 w-4 mr-1" />
-            <span>1 hour slots</span>
+            <span>ช่วงละ 1 ชั่วโมง</span>
           </div>
         </div>
 
@@ -65,7 +65,7 @@ export function CourtCard({ court, onViewSlots }: CourtCardProps) {
           onClick={() => onViewSlots?.(court.id)}
           className="w-full"
         >
-          View Available Slots
+          ดูช่วงเวลาที่ว่าง
         </Button>
       </div>
     </div>

@@ -50,27 +50,27 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
   const paymentMethods = [
     {
       id: "credit_card",
-      label: "Credit Card",
+      label: "บัตรเครดิต",
       icon: CreditCard,
-      description: "Pay securely with your credit card"
+      description: "ชำระด้วยบัตรเครดิตอย่างปลอดภัย"
     },
     {
       id: "qr",
-      label: "QR Code Payment",
+      label: "ชำระเงินผ่าน QR Code",
       icon: QrCode,
-      description: "Scan QR code with your mobile banking app"
+      description: "สแกน QR Code ด้วยแอปธนาคารมือถือ"
     },
     {
       id: "bank_transfer",
-      label: "Bank Transfer",
+      label: "โอนเงินธนาคาร",
       icon: DollarSign,
-      description: "Direct transfer to our bank account"
+      description: "โอนเงินตรงเข้าบัญชีธนาคารของเรา"
     },
     {
       id: "cash",
-      label: "Cash Payment",
+      label: "ชำระเงินสด",
       icon: DollarSign,
-      description: "Pay cash at the facility"
+      description: "ชำระเงินสดที่สถานที่"
     }
   ];
 
@@ -80,29 +80,29 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
         {/* Header */}
         <div className="mb-8">
           <Button variant="outline" onClick={onBack} className="mb-4">
-            ← Back to Booking
+            ← กลับไปการจอง
           </Button>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Complete Payment</h1>
-          <p className="text-muted-foreground">Secure your court reservation</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">ชำระเงิน</h1>
+          <p className="text-muted-foreground">ยืนยันการจองสนามของคุณ</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Booking Summary */}
           <Card className="lg:col-span-1">
             <CardHeader>
-              <CardTitle>Booking Summary</CardTitle>
+              <CardTitle>สรุปการจอง</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <p className="text-sm text-muted-foreground">Court</p>
+                <p className="text-sm text-muted-foreground">สนาม</p>
                 <p className="font-semibold">{bookingDetails.court}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Date</p>
+                <p className="text-sm text-muted-foreground">วันที่</p>
                 <p className="font-semibold">{bookingDetails.date}</p>
               </div>
               <div>
-                <p className="text-sm text-muted-foreground">Time Slots</p>
+                <p className="text-sm text-muted-foreground">ช่วงเวลา</p>
                 <div className="space-y-1">
                   {bookingDetails.slots.map((slot, index) => (
                     <p key={index} className="font-semibold text-sm">{slot}</p>
@@ -111,8 +111,8 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
               </div>
               <div className="border-t pt-4">
                 <div className="flex justify-between items-center">
-                  <p className="font-semibold">Total Amount</p>
-                  <p className="text-2xl font-bold text-primary">${bookingDetails.totalAmount}</p>
+                  <p className="font-semibold">จำนวนเงินรวม</p>
+                  <p className="text-2xl font-bold text-primary">฿{bookingDetails.totalAmount}</p>
                 </div>
               </div>
             </CardContent>
@@ -121,8 +121,8 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
           {/* Payment Form */}
           <Card className="lg:col-span-2">
             <CardHeader>
-              <CardTitle>Payment Method</CardTitle>
-              <CardDescription>Choose your preferred payment method</CardDescription>
+              <CardTitle>วิธีการชำระเงิน</CardTitle>
+              <CardDescription>เลือกวิธีการชำระเงินที่คุณต้องการ</CardDescription>
             </CardHeader>
             <CardContent>
               <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
@@ -153,19 +153,19 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
               <div className="mt-6 space-y-4">
                 {paymentMethod === "credit_card" && (
                   <div className="space-y-4 p-4 bg-accent/30 rounded-lg">
-                    <h4 className="font-semibold">Credit Card Details</h4>
+                    <h4 className="font-semibold">รายละเอียดบัตรเครดิต</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="cardNumber">Card Number</Label>
+                        <Label htmlFor="cardNumber">หมายเลขบัตร</Label>
                         <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="expiryDate">Expiry Date</Label>
+                        <Label htmlFor="expiryDate">วันหมดอายุ</Label>
                         <Input id="expiryDate" placeholder="MM/YY" />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="cardName">Cardholder Name</Label>
-                        <Input id="cardName" placeholder="John Doe" />
+                        <Label htmlFor="cardName">ชื่อผู้ถือบัตร</Label>
+                        <Input id="cardName" placeholder="สมชาย ใจดี" />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="cvv">CVV</Label>
@@ -177,34 +177,34 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
 
                 {paymentMethod === "qr" && (
                   <div className="space-y-4 p-4 bg-accent/30 rounded-lg text-center">
-                    <h4 className="font-semibold">QR Code Payment</h4>
+                    <h4 className="font-semibold">ชำระเงินผ่าน QR Code</h4>
                     <div className="w-48 h-48 bg-white mx-auto border-2 border-dashed border-muted-foreground/30 rounded-lg flex items-center justify-center">
                       <QrCode className="h-16 w-16 text-muted-foreground" />
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Scan this QR code with your mobile banking app to complete payment
+                      สแกน QR Code นี้ด้วยแอปธนาคารมือถือเพื่อชำระเงิน
                     </p>
                   </div>
                 )}
 
                 {paymentMethod === "bank_transfer" && (
                   <div className="space-y-4 p-4 bg-accent/30 rounded-lg">
-                    <h4 className="font-semibold">Bank Transfer Details</h4>
+                    <h4 className="font-semibold">รายละเอียดการโอนเงิน</h4>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span>Bank Name:</span>
-                        <span className="font-semibold">CourtBook Bank</span>
+                        <span>ชื่อธนาคาร:</span>
+                        <span className="font-semibold">ธนาคารจองสนาม</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Account Number:</span>
+                        <span>หมายเลขบัญชี:</span>
                         <span className="font-semibold">1234567890</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Routing Number:</span>
+                        <span>รหัสสาขา:</span>
                         <span className="font-semibold">987654321</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Reference:</span>
+                        <span>หมายเลขอ้างอิง:</span>
                         <span className="font-semibold">BOOKING-{Date.now()}</span>
                       </div>
                     </div>
@@ -213,10 +213,10 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
 
                 {paymentMethod === "cash" && (
                   <div className="space-y-4 p-4 bg-accent/30 rounded-lg">
-                    <h4 className="font-semibold">Cash Payment</h4>
+                    <h4 className="font-semibold">ชำระเงินสด</h4>
                     <p className="text-sm text-muted-foreground">
-                      Please pay the cash amount at the facility counter before your booking time. 
-                      Present your booking confirmation to the staff.
+                      กรุณาชำระเงินสดที่เคาน์เตอร์สถานที่ก่อนเวลาจองของคุณ 
+                      แสดงการยืนยันการจองให้กับเจ้าหน้าที่
                     </p>
                   </div>
                 )}
@@ -224,7 +224,7 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
                 {/* Payment Proof Upload */}
                 {(paymentMethod === "qr" || paymentMethod === "bank_transfer") && (
                   <div className="space-y-4">
-                    <Label htmlFor="paymentProof">Upload Payment Proof (Optional)</Label>
+                    <Label htmlFor="paymentProof">อัปโหลดหลักฐานการชำระเงิน (ไม่บังคับ)</Label>
                     <div className="border-2 border-dashed border-muted-foreground/30 rounded-lg p-6 text-center">
                       <input
                         id="paymentProof"
@@ -236,7 +236,7 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
                       <Label htmlFor="paymentProof" className="cursor-pointer">
                         <Upload className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
                         <p className="text-sm text-muted-foreground">
-                          {proofImage ? proofImage.name : "Click to upload receipt or screenshot"}
+                          {proofImage ? proofImage.name : "คลิกเพื่ออัปโหลดใบเสร็จหรือภาพหน้าจอ"}
                         </p>
                       </Label>
                     </div>
@@ -254,16 +254,16 @@ export function PaymentForm({ bookingDetails, onPayment, onBack }: PaymentFormPr
                   className="w-full"
                 >
                   {isProcessing ? (
-                    <>Processing...</>
+                    <>กำลังดำเนินการ...</>
                   ) : (
                     <>
                       <Check className="mr-2 h-4 w-4" />
-                      Complete Payment (${bookingDetails.totalAmount})
+                      ชำระเงิน (฿{bookingDetails.totalAmount})
                     </>
                   )}
                 </Button>
                 <p className="text-xs text-muted-foreground text-center mt-2">
-                  Your payment is secured with industry-standard encryption
+                  การชำระเงินของคุณมีความปลอดภัยด้วยการเข้ารหัสมาตรฐาน
                 </p>
               </div>
             </CardContent>

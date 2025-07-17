@@ -86,11 +86,11 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "confirmed":
-        return <Badge variant="default" className="bg-success">Confirmed</Badge>;
+        return <Badge variant="default" className="bg-success">ยืนยันแล้ว</Badge>;
       case "pending":
-        return <Badge variant="secondary">Pending</Badge>;
+        return <Badge variant="secondary">รอดำเนินการ</Badge>;
       case "cancelled":
-        return <Badge variant="destructive">Cancelled</Badge>;
+        return <Badge variant="destructive">ยกเลิก</Badge>;
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -99,11 +99,11 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
   const getPaymentBadge = (status: string) => {
     switch (status) {
       case "paid":
-        return <Badge variant="default" className="bg-success">Paid</Badge>;
+        return <Badge variant="default" className="bg-success">ชำระแล้ว</Badge>;
       case "unpaid":
-        return <Badge variant="secondary">Unpaid</Badge>;
+        return <Badge variant="secondary">ยังไม่ชำระ</Badge>;
       case "failed":
-        return <Badge variant="destructive">Failed</Badge>;
+        return <Badge variant="destructive">ล้มเหลว</Badge>;
       default:
         return <Badge variant="outline">{status}</Badge>;
     }
@@ -121,12 +121,12 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-foreground mb-2">My Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back, {user.name}!</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">แดชบอร์ดของฉัน</h1>
+          <p className="text-muted-foreground">ยินดีต้อนรับกลับ, {user.name}!</p>
         </div>
         <Button variant="gradient" onClick={onViewCourts}>
           <Calendar className="mr-2 h-4 w-4" />
-          Book New Court
+          จองสนามใหม่
         </Button>
       </div>
 
@@ -140,7 +140,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{upcomingBookings.length}</p>
-                <p className="text-sm text-muted-foreground">Upcoming Bookings</p>
+                <p className="text-sm text-muted-foreground">การจองที่จะมา</p>
               </div>
             </div>
           </CardContent>
@@ -154,9 +154,9 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">
-                  ${bookings.filter(b => b.payment_status === "paid").reduce((sum, b) => sum + b.total_amount, 0)}
+                  ฿{bookings.filter(b => b.payment_status === "paid").reduce((sum, b) => sum + b.total_amount, 0)}
                 </p>
-                <p className="text-sm text-muted-foreground">Total Spent</p>
+                <p className="text-sm text-muted-foreground">ใช้จ่ายทั้งหมด</p>
               </div>
             </div>
           </CardContent>
@@ -170,7 +170,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{pastBookings.length}</p>
-                <p className="text-sm text-muted-foreground">Past Bookings</p>
+                <p className="text-sm text-muted-foreground">การจองที่ผ่านมา</p>
               </div>
             </div>
           </CardContent>
@@ -180,18 +180,18 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
       {/* Upcoming Bookings */}
       <Card className="mb-8">
         <CardHeader>
-          <CardTitle>Upcoming Bookings</CardTitle>
+          <CardTitle>การจองที่จะมา</CardTitle>
           <CardDescription>
-            Your confirmed and pending court reservations
+            การจองสนามที่ยืนยันแล้วและรอดำเนินการ
           </CardDescription>
         </CardHeader>
         <CardContent>
           {upcomingBookings.length === 0 ? (
             <div className="text-center py-8">
               <Calendar className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground mb-4">No upcoming bookings</p>
+              <p className="text-muted-foreground mb-4">ไม่มีการจองที่จะมา</p>
               <Button variant="gradient" onClick={onViewCourts}>
-                Book Your First Court
+                จองสนามแรกของคุณ
               </Button>
             </div>
           ) : (
@@ -215,7 +215,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
                     </div>
                     
                     <div>
-                      <p className="font-medium">{new Date(booking.date).toLocaleDateString()}</p>
+                      <p className="font-medium">{new Date(booking.date).toLocaleDateString('th-TH')}</p>
                       <p className="text-sm text-muted-foreground">
                         {booking.slots.map(s => `${s.start_time}-${s.end_time}`).join(", ")}
                       </p>
@@ -227,7 +227,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <span className="font-semibold text-primary">${booking.total_amount}</span>
+                      <span className="font-semibold text-primary">฿{booking.total_amount}</span>
                       <div className="flex space-x-2">
                         {booking.payment_status === "unpaid" && (
                           <Button 
@@ -235,7 +235,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
                             size="sm"
                             onClick={() => onPayment?.(booking.id)}
                           >
-                            Pay Now
+                            ชำระเงินตอนนี้
                           </Button>
                         )}
                         {booking.status === "pending" && (
@@ -260,14 +260,14 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
       {/* Past Bookings */}
       <Card>
         <CardHeader>
-          <CardTitle>Booking History</CardTitle>
+          <CardTitle>ประวัติการจอง</CardTitle>
           <CardDescription>
-            Your previous court reservations
+            การจองสนามก่อนหน้านี้ของคุณ
           </CardDescription>
         </CardHeader>
         <CardContent>
           {pastBookings.length === 0 ? (
-            <p className="text-center text-muted-foreground py-8">No booking history</p>
+            <p className="text-center text-muted-foreground py-8">ไม่มีประวัติการจอง</p>
           ) : (
             <div className="space-y-4">
               {pastBookings.map((booking) => (
@@ -289,7 +289,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
                     </div>
                     
                     <div>
-                      <p className="font-medium">{new Date(booking.date).toLocaleDateString()}</p>
+                      <p className="font-medium">{new Date(booking.date).toLocaleDateString('th-TH')}</p>
                       <p className="text-sm text-muted-foreground">
                         {booking.slots.map(s => `${s.start_time}-${s.end_time}`).join(", ")}
                       </p>
@@ -301,7 +301,7 @@ export function UserDashboard({ user, onViewCourts, onCancelBooking, onPayment }
                     </div>
                     
                     <div className="flex items-center justify-between">
-                      <span className="font-semibold text-muted-foreground">${booking.total_amount}</span>
+                      <span className="font-semibold text-muted-foreground">฿{booking.total_amount}</span>
                       <Button variant="ghost" size="sm">
                         <Eye className="h-4 w-4" />
                       </Button>

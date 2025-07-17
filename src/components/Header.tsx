@@ -21,7 +21,7 @@ export function Header({ user, onLogin, onLogout, onNavigate }: HeaderProps) {
           <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
             <Calendar className="h-5 w-5 text-white" />
           </div>
-          <h1 className="text-xl font-bold text-foreground">CourtBook</h1>
+          <h1 className="text-xl font-bold text-foreground">จองสนาม</h1>
         </div>
 
         {/* Navigation */}
@@ -30,14 +30,14 @@ export function Header({ user, onLogin, onLogout, onNavigate }: HeaderProps) {
             onClick={() => onNavigate?.("courts")}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            Browse Courts
+            ดูสนาม
           </button>
           {user && (
             <button 
               onClick={() => onNavigate?.("dashboard")}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              My Bookings
+              การจองของฉัน
             </button>
           )}
           {user?.isAdmin && (
@@ -45,7 +45,7 @@ export function Header({ user, onLogin, onLogout, onNavigate }: HeaderProps) {
               onClick={() => onNavigate?.("admin")}
               className="text-muted-foreground hover:text-foreground transition-colors"
             >
-              Admin Panel
+              แผงควบคุมผู้ดูแล
             </button>
           )}
         </nav>
@@ -67,7 +67,7 @@ export function Header({ user, onLogin, onLogout, onNavigate }: HeaderProps) {
                 className="flex items-center space-x-1"
               >
                 <LogOut className="h-4 w-4" />
-                <span className="hidden sm:inline">Logout</span>
+                <span className="hidden sm:inline">ออกจากระบบ</span>
               </Button>
             </div>
           ) : (
@@ -78,7 +78,7 @@ export function Header({ user, onLogin, onLogout, onNavigate }: HeaderProps) {
               className="flex items-center space-x-1"
             >
               <LogIn className="h-4 w-4" />
-              <span>Login</span>
+              <span>เข้าสู่ระบบ</span>
             </Button>
           )}
         </div>

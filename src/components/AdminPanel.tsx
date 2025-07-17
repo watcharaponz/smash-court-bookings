@@ -58,14 +58,14 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
       <div className="flex items-center justify-between mb-8">
         <div>
           <Button variant="outline" onClick={onBack} className="mb-4">
-            ← Back to Dashboard
+            ← กลับไปแดชบอร์ด
           </Button>
-          <h1 className="text-3xl font-bold text-foreground mb-2">Admin Panel</h1>
-          <p className="text-muted-foreground">Manage courts, bookings, and system settings</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">แผงควบคุมผู้ดูแล</h1>
+          <p className="text-muted-foreground">จัดการสนาม การจอง และการตั้งค่าระบบ</p>
         </div>
         <div className="flex items-center space-x-2">
           <Settings className="h-5 w-5 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Administrator</span>
+          <span className="text-sm text-muted-foreground">ผู้ดูแลระบบ</span>
         </div>
       </div>
 
@@ -79,7 +79,7 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats.totalBookings}</p>
-                <p className="text-sm text-muted-foreground">Total Bookings</p>
+                <p className="text-sm text-muted-foreground">การจองทั้งหมด</p>
               </div>
             </div>
           </CardContent>
@@ -92,8 +92,8 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
                 <DollarSign className="h-6 w-6 text-success" />
               </div>
               <div>
-                <p className="text-2xl font-bold text-foreground">${stats.totalRevenue}</p>
-                <p className="text-sm text-muted-foreground">Total Revenue</p>
+                <p className="text-2xl font-bold text-foreground">฿{stats.totalRevenue}</p>
+                <p className="text-sm text-muted-foreground">รายได้รวม</p>
               </div>
             </div>
           </CardContent>
@@ -107,7 +107,7 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats.activeUsers}</p>
-                <p className="text-sm text-muted-foreground">Active Users</p>
+                <p className="text-sm text-muted-foreground">ผู้ใช้ที่ใช้งาน</p>
               </div>
             </div>
           </CardContent>
@@ -121,7 +121,7 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
               </div>
               <div>
                 <p className="text-2xl font-bold text-foreground">{stats.availableCourts}</p>
-                <p className="text-sm text-muted-foreground">Available Courts</p>
+                <p className="text-sm text-muted-foreground">สนามที่พร้อมใช้</p>
               </div>
             </div>
           </CardContent>
@@ -131,9 +131,9 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
       {/* Admin Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="courts">Courts Management</TabsTrigger>
-          <TabsTrigger value="bookings">Bookings</TabsTrigger>
-          <TabsTrigger value="users">Users</TabsTrigger>
+          <TabsTrigger value="courts">จัดการสนาม</TabsTrigger>
+          <TabsTrigger value="bookings">การจอง</TabsTrigger>
+          <TabsTrigger value="users">ผู้ใช้</TabsTrigger>
         </TabsList>
 
         {/* Courts Management */}
@@ -141,12 +141,12 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <div>
-                <CardTitle>Court Management</CardTitle>
-                <CardDescription>Add, edit, or remove badminton courts</CardDescription>
+                <CardTitle>จัดการสนาม</CardTitle>
+                <CardDescription>เพิ่ม แก้ไข หรือลบสนามแบดมินตัน</CardDescription>
               </div>
               <Button variant="gradient">
                 <Plus className="mr-2 h-4 w-4" />
-                Add New Court
+                เพิ่มสนามใหม่
               </Button>
             </CardHeader>
             <CardContent>
@@ -158,11 +158,11 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
                         <div className="flex items-center space-x-3">
                           <h4 className="font-semibold">{court.name}</h4>
                           <Badge variant={court.active ? "default" : "secondary"}>
-                            {court.active ? "Active" : "Inactive"}
+                            {court.active ? "ใช้งาน" : "ไม่ใช้งาน"}
                           </Badge>
                         </div>
                         <p className="text-sm text-muted-foreground mt-1">{court.location}</p>
-                        <p className="text-sm font-medium text-primary mt-1">${court.price}/slot</p>
+                        <p className="text-sm font-medium text-primary mt-1">฿{court.price}/ช่วง</p>
                       </div>
                       <div className="flex space-x-2">
                         <Button variant="outline" size="sm">
@@ -185,43 +185,43 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
           {/* Add Court Form */}
           <Card>
             <CardHeader>
-              <CardTitle>Add New Court</CardTitle>
-              <CardDescription>Create a new badminton court</CardDescription>
+              <CardTitle>เพิ่มสนามใหม่</CardTitle>
+              <CardDescription>สร้างสนามแบดมินตันใหม่</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="courtName">Court Name</Label>
-                    <Input id="courtName" placeholder="e.g., Premium Court A" />
+                    <Label htmlFor="courtName">ชื่อสนาม</Label>
+                    <Input id="courtName" placeholder="เช่น สนาม A พรีเมียม" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="courtLocation">Location</Label>
-                    <Input id="courtLocation" placeholder="e.g., Downtown Sports Center" />
+                    <Label htmlFor="courtLocation">สถานที่</Label>
+                    <Input id="courtLocation" placeholder="เช่น ศูนย์กีฬาใจกลางเมือง" />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="courtPrice">Price per Slot ($)</Label>
-                    <Input id="courtPrice" type="number" placeholder="30" />
+                    <Label htmlFor="courtPrice">ราคาต่อช่วง (฿)</Label>
+                    <Input id="courtPrice" type="number" placeholder="500" />
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="space-y-2">
-                    <Label htmlFor="courtDescription">Description</Label>
+                    <Label htmlFor="courtDescription">คำอธิบาย</Label>
                     <Textarea 
                       id="courtDescription" 
-                      placeholder="Describe the court features, amenities, etc."
+                      placeholder="อธิบายคุณลักษณะของสนาม สิ่งอำนวยความสะดวก ฯลฯ"
                       className="min-h-[100px]"
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="courtImage">Court Image URL</Label>
+                    <Label htmlFor="courtImage">URL รูปภาพสนาม</Label>
                     <Input id="courtImage" placeholder="https://example.com/court-image.jpg" />
                   </div>
                 </div>
               </div>
               <Button variant="gradient" className="mt-6">
                 <Plus className="mr-2 h-4 w-4" />
-                Create Court
+                สร้างสนาม
               </Button>
             </CardContent>
           </Card>
@@ -231,8 +231,8 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
         <TabsContent value="bookings" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Recent Bookings</CardTitle>
-              <CardDescription>Manage and monitor court reservations</CardDescription>
+              <CardTitle>การจองล่าสุด</CardTitle>
+              <CardDescription>จัดการและติดตามการจองสนาม</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -253,16 +253,18 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
                         <Badge 
                           variant={booking.status === "confirmed" ? "default" : "secondary"}
                         >
-                          {booking.status}
+                          {booking.status === "confirmed" ? "ยืนยันแล้ว" : 
+                           booking.status === "pending" ? "รอดำเนินการ" : "ยกเลิก"}
                         </Badge>
                       </div>
                       <div>
-                        <p className="font-semibold">${booking.amount}</p>
+                        <p className="font-semibold">฿{booking.amount}</p>
                         <Badge 
                           variant={booking.payment_status === "paid" ? "default" : "secondary"}
                           className={booking.payment_status === "paid" ? "bg-success" : ""}
                         >
-                          {booking.payment_status}
+                          {booking.payment_status === "paid" ? "ชำระแล้ว" : 
+                           booking.payment_status === "unpaid" ? "ยังไม่ชำระ" : "ล้มเหลว"}
                         </Badge>
                       </div>
                       <div className="flex space-x-2">
@@ -285,13 +287,13 @@ export function AdminPanel({ onBack }: AdminPanelProps) {
         <TabsContent value="users" className="space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>User Management</CardTitle>
-              <CardDescription>View and manage registered users</CardDescription>
+              <CardTitle>จัดการผู้ใช้</CardTitle>
+              <CardDescription>ดูและจัดการผู้ใช้ที่ลงทะเบียน</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-center py-8">
                 <Users className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">User management features coming soon</p>
+                <p className="text-muted-foreground">ฟีเจอร์การจัดการผู้ใช้กำลังมาเร็วๆ นี้</p>
               </div>
             </CardContent>
           </Card>
